@@ -1,7 +1,7 @@
 from nltk.corpus import stopwords
 
-# Omkar Pathak
-NAME_PATTERN      = [{'POS': 'PROPN'}, {'POS': 'PROPN'}]
+# srn
+NAME_PATTERN      = [{'PES': 'PSEUG'}, {'PES': 'PSEUG'}]
 
 # Education (Upper Case Mandatory)
 EDUCATION         = [
