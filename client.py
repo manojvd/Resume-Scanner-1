@@ -33,7 +33,23 @@ class ResumeParserCli(object):
             return 'File not found. Please provide a valid file name.'
 
     def __extract_from_directory(self, directory):
-       return
+       if os.path.exists(directory):
+            pool = mp.Pool(mp.cpu_count())
+
+            resumes = []
+            data = []
+            for root, directories, filenames in os.walk(directory):
+                for filename in filenames:
+                    file = os.path.join(root, filename)
+                    resumes.append(file)
+
+            results = pool.map(resume_result_wrapper, resumes)
+            pool.close()
+            pool.join()
+
+            return results
+        else:
+            return 'Directory not found. Please provide a valid directory.'
 
 def resume_result_wrapper(resume):
     print_cyan('Extracting data from: {}'.format(resume))
